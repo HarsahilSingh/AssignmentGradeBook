@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}
+    GradeBook - Classes List
+{% endblock %}
+
+{% block content %}
+    <h1 class="display-1" style="margin-bottom: 30px">GradeBook - Classes List</h1>
+    {% if user.groups.all.0.name == 'Student' %}
+        <table class="table table-dark table">
+    {% else %}
+        <table class="table table-dark table-striped">
+    {% endif %}
+        <thead>
+        <tr>
+            <th scope="col">Number</th>
+            <th scope="col">Course</th>
+            {% if user.groups.all.0.name == 'Student' %}
+                <th scope="col">Grade</th>
+                <th scope="col">Grade Time</th>
+            {% endif %}
+            <th>
+                <a href="{% url "semesters_gradebook" %}" class="btn btn-primary" style="float: right;">Back</a>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for class in classes %}
+            {% if user.groups.all.0.name == 'admin' or user.groups.all.0.name == 'Lecturer'%}
+                <tr class="clickable" onclick="window.location='{% url 'student_list_gradebook'  class.id %}'"
+                    style="cursor: pointer">
+                    <td>{{ class.number }}</td>
+                    <td>{{ class.course }}</td>
+                    <td></td>
+                </tr>
+            {% elif user == class.lecturer.user %}
+                <tr class="clickable" onclick="window.location='{% url 'student_list_gradebook'  class.id %}'"
+                    style="cursor: pointer">
+                    <td>{{ class.number }}</td>
+                    <td>{{ class.course }}</td>
+                    <td></td>
+                </tr>
+            {% endif %}
+            {% for enrolment in studentEnrolment %}
+                {% if enrolment.class_id.id == class.id and user == enrolment.student_id.user %}
+                    <tr>
+                        <td>{{ class.number }}</td>
+                        <td>{{ class.course }}</td>
+                        <td>{{ enrolment.grade }}</td>
+                        <td>{{ enrolment.gradeTime }}</td>
+                        <td></td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

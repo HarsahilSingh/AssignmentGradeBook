@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}
+    Create Lecturer
+{% endblock %}
+
+{% block content %}
+    <h1 class="display-2" style="margin-bottom: 30px">Create Lecturer</h1>
+    <h4 class="display-4" style="margin-bottom: 30px">{{ message }}</h4>
+    <a class="btn btn-primary" href="{% url 'list_lecturer' %}">Back To Lecturer</a>
+{% endblock %}

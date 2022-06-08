@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}
+GradeBook
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h3 class="display-3" style="">Welcome to GradeBook System</h3>
+    {% else %}
+        <h1 class="display-1">Login to Access the Grade book!</h1>
+    {% endif %}
+{% endblock %}
