@@ -9,7 +9,6 @@ from django.core.files.storage import FileSystemStorage
 from django.core.mail import send_mail
 from django.shortcuts import render
 
-import pyrebase
 
 # Create your views here.
 from django.urls import reverse_lazy
@@ -22,18 +21,18 @@ from Gradebook.forms import addCourseForm, updateCourseForm, addSemesterForm, up
     studentEnrolmentForm
 from Gradebook.models import Course, Semester, Lecturer, Class, Student, StudentEnrollment
 
-
-config = {
-  "apiKey": "AIzaSyBE_hERN9a8eDwxum1jv3gSha0u70YFIJo",
-  "authDomain": "gradebook-2022.firebaseapp.com",
-  "projectId": "gradebook-2022",
-  "storageBucket": "gradebook-2022.appspot.com",
-  "messagingSenderId": "665815848628",
-  "appId": "1:665815848628:web:16eef48502828a627fa9e1",
-  "measurementId": "G-Q2D975MEB6"
-}
-firebase = pyrebase.initialize_app(config)
-storage = firebase.storage()
+#
+# config = {
+#   "apiKey": "AIzaSyBE_hERN9a8eDwxum1jv3gSha0u70YFIJo",
+#   "authDomain": "gradebook-2022.firebaseapp.com",
+#   "projectId": "gradebook-2022",
+#   "storageBucket": "gradebook-2022.appspot.com",
+#   "messagingSenderId": "665815848628",
+#   "appId": "1:665815848628:web:16eef48502828a627fa9e1",
+#   "measurementId": "G-Q2D975MEB6"
+# }
+# firebase = pyrebase.initialize_app(config)
+# storage = firebase.storage()
 
 # def index(request):
 #   context = {"title": "my tittle", "content": "my content"}
