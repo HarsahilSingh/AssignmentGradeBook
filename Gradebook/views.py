@@ -9,6 +9,8 @@ from django.core.files.storage import FileSystemStorage
 from django.core.mail import send_mail
 from django.shortcuts import render
 
+import pyrebase
+
 # Create your views here.
 from django.urls import reverse_lazy
 from django.utils import timezone
@@ -20,6 +22,18 @@ from Gradebook.forms import addCourseForm, updateCourseForm, addSemesterForm, up
     studentEnrolmentForm
 from Gradebook.models import Course, Semester, Lecturer, Class, Student, StudentEnrollment
 
+
+config = {
+  "apiKey": "AIzaSyBE_hERN9a8eDwxum1jv3gSha0u70YFIJo",
+  "authDomain": "gradebook-2022.firebaseapp.com",
+  "projectId": "gradebook-2022",
+  "storageBucket": "gradebook-2022.appspot.com",
+  "messagingSenderId": "665815848628",
+  "appId": "1:665815848628:web:16eef48502828a627fa9e1",
+  "measurementId": "G-Q2D975MEB6"
+}
+firebase = pyrebase.initialize_app(config)
+storage = firebase.storage()
 
 # def index(request):
 #   context = {"title": "my tittle", "content": "my content"}
@@ -104,7 +118,7 @@ def create_lecturer(request):
 
     message = ''
     try:
-        user = User.objects.create_user(username=first_Name.lower)
+        user = User.objects.create_user(username=first_Name.lower())
         user.set_password(first_Name.lower())
         user.first_name = first_Name
         user.last_name = last_Name
@@ -283,10 +297,10 @@ def file_upload(request):
             user.save()
             student = Student(user=user, studentID=id, first_Name=firstname, last_Name=lastname, email=email,
                               dateOfBirth=dob)
-            class1 = Class.objects.get(number=classs)
+            # class1 = Class.objects.get(number=classs)
             student.save()
-            studentEnrolment = StudentEnrollment(student_id=student,class_id=class1,enrollTime=enrolTime)
-            studentEnrolment.save
+            # studentEnrolment = StudentEnrollment(student_id=student,class_id=class1,enrollTime=enrolTime)
+            # studentEnrolment.save
 
             i= i+1
 

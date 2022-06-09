@@ -34,23 +34,21 @@ class updateCourseForm(forms.ModelForm):
 class addSemesterForm(forms.ModelForm):
     class Meta:
         model = Semester
-        fields = ('year', 'semester','courses')
+        fields = ('year', 'semester')
         widgets = {
             'year': forms.NumberInput(attrs={'class': 'form-control', 'min': '2022', 'max': '2100'}),
             'semester': forms.Select(attrs={'class': 'form-select'}),
-            'courses': forms.SelectMultiple(attrs={'class': 'form-select'}),
         }
 
 
 class updateSemesterForm(forms.ModelForm):
     class Meta:
         model = Semester
-        fields = ('year', 'semester', 'courses')
+        fields = ('year', 'semester')
 
         widgets = {
             'year': forms.NumberInput(attrs={'class': 'form-control', 'min': '2022', 'max': '2100'}),
             'semester': forms.Select(attrs={'class': 'form-select'}),
-            'courses': forms.SelectMultiple(attrs={'class': 'form-select'}),
         }
 
 

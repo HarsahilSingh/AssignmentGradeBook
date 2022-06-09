@@ -29,7 +29,7 @@ class Semester(models.Model):
     def __str__(self):
         return str(self.year)+""+str(self.semester)
     def get_absolute_url(self):
-        return reverse('list_semesters')
+        return reverse('list_semester')
 
 
 class Lecturer(models.Model):

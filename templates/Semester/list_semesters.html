@@ -10,7 +10,6 @@ List Semesters
     <tr>
         <th scope="col">Year</th>
       <th scope="col">Semester</th>
-        <th scope="col">Courses</th>
       <th scope="col"><div class="d-grid gap-2 d-md-flex justify-content-md-end">
   <a href="{% url "create_semester"  %}" class="btn btn-primary me-md-2" type="button">Create Semester</a>
       </div></th>
@@ -23,9 +22,6 @@ List Semesters
         {% endfor %}</th>
       <td>{% for Semester in object_list%}
             <ul>{{ Semester.semester  }}</ul>
-        {% endfor %}</td>
-    <td>{% for Course in Semester.courses.all %}
-             <a href="{% url "list_courses" %}">{{ Course }}</a><br>
         {% endfor %}</td>
     <td> {% for Semester in object_list%}
            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
